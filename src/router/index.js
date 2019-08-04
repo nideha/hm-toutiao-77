@@ -8,6 +8,8 @@ import Welcome from '@/views/welcome'
 import Article from '@/views/article'
 import NotFound from '@/views/404'
 
+import store from '@/store'
+
 Vue.use(VueRouter)
 // 实例化一个router对象
 const router = new VueRouter({
@@ -41,5 +43,15 @@ const router = new VueRouter({
     { path: '*', name: '404', component: NotFound }
   ]
 })
-
+// 前置导航守卫
+router.beforeEach((to, from, next) => {
+  // 判断是不是登录路由
+  if (to.path === '/login') return next()
+  // 判断是否登录
+  // store.getUser().token  判断是否有登录信息
+  if (!store.getUser().token) return next('/login')
+  next()
+  // if (to.path !== '/login' && !Storage.getUser().token) return next('/login')
+  // next()
+})
 export default router

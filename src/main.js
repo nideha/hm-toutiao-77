@@ -6,10 +6,10 @@ import 'element-ui/lib/theme-chalk/index.css'
 // 在这引入less文件 可以全局使用
 import '@/style/index.less'
 
-import axios from 'axios'
+import router from '@/router'
 // @是路径别名 代表src文件 在vue-cli创建的项目下才可以使用
 // 目录下有默认索引文件  index.js就是默认索引文件 顺序：.js .vue .json
-import router from '@/router'
+import axios from '@/api'
 // 挂载到vue原型上让全局使用
 Vue.prototype.$http = axios
 
