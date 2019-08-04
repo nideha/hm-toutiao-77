@@ -33,6 +33,8 @@
 </template>
 
 <script>
+// 引入store模块
+import store from '@/store'
 export default {
   // 这的数据是model绑定的
   data () {
@@ -97,7 +99,9 @@ export default {
             )
             .then(res => {
               // res 响应对象  成功
-              console.log(res.data)
+              // console.log(res.data)
+              // 存储用户信息
+              store.setUser(res.data.data)
               // 跳转去首页
               this.$router.push('/')
             })
