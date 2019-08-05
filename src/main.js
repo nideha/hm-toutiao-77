@@ -23,6 +23,7 @@ Vue.config.productionTip = false
 Vue.use(ElementUI)
 // 根实例
 new Vue({
+  // 挂载之后，任何地方都可以用this.$router拿到路由实例
   router,
   // render是渲染哪个页面
   render: h => h(App)

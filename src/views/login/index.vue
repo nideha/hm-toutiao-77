@@ -88,27 +88,44 @@ export default {
     login () {
       // 对整个表单进行校验
       // this.$refs 会找到当前文件下所有标识ref属性的元素
-      this.$refs.loginForm.validate(valid => {
+      this.$refs.loginForm.validate(async valid => {
         if (valid) {
-          // 请求登录接口
-          // 请求体传参需要使用对象的形式
-          this.$http
-            .post(
-              'http://ttapi.research.itcast.cn/mp/v1_0/authorizations',
-              this.loginForm
-            )
-            .then(res => {
-              // res 响应对象  成功
-              // console.log(res.data)
-              // 存储用户信息
-              store.setUser(res.data.data)
-              // 跳转去首页
-              this.$router.push('/')
-            })
-            .catch(() => {
-              // 错误提示
-              this.$message.error('手机号或验证码错误')
-            })
+          // // 请求登录接口
+          // // 请求体传参需要使用对象的形式
+          // this.$http
+          //   .post(
+          //     'http://ttapi.research.itcast.cn/mp/v1_0/authorizations',
+          //     this.loginForm
+          //   )
+          //   .then(res => {
+          //     // res 响应对象  成功
+          //     // console.log(res.data)
+          //     // 存储用户信息
+          //     store.setUser(res.data.data)
+          //     // 跳转去首页
+          //     this.$router.push('/')
+          //   })
+          //   .catch(() => {
+          //     // 错误提示
+          //     this.$message.error('手机号或验证码错误')
+          //   })
+          // promises 的写法
+          // 成功的时候需要把响应的信息存储到sessionStorage中
+          // 取出data
+          // 存储用户信息
+          // 怎么处理async&await的使用时有可能发生的错误  try{}catch(e){}
+          try {
+            // 去拿后台的数据
+            const {
+              data: { data }
+            } = await this.$http.post('authorizations', this.loginForm)
+            // 拿到的话就设置到本地
+            store.setUser(data)
+            // 跳转去首页
+            this.$router.push('/')
+          } catch (e) {
+            this.$message.error('手机号或验证码错误')
+          }
         }
       })
     }

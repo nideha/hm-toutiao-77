@@ -3,7 +3,7 @@
     <el-aside :width="isCollapse?'64px':'200px'">
       <div class="logo" :class="{miniLogo:isCollapse}"></div>
       <!-- 左侧导航菜单 -->
-      <!-- 启用router模式会在激活导航时以 index 作为 path 进行路由跳转 -->
+      <!-- 启用router模式会在激活导航时以 index 作为 path 进行路由跳转，直接写router就可以，后边不用跟布尔值 -->
       <!-- :default-active="$route.path" 动态绑定#后边的地址 -->
       <el-menu
         :collapse="isCollapse"
@@ -12,7 +12,7 @@
         background-color="#002033"
         text-color="#fff"
         active-text-color="#ffd04b"
-        router="true"
+        router
       >
         <!-- el-submenu 有子菜单的菜单项 -->
         <!-- el-menu-item 没有子菜单的菜单项 -->
