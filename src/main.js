@@ -10,6 +10,8 @@ import router from '@/router'
 // @是路径别名 代表src文件 在vue-cli创建的项目下才可以使用
 // 目录下有默认索引文件  index.js就是默认索引文件 顺序：.js .vue .json
 import axios from '@/api'
+import myCom from '@/components'
+Vue.use(myCom)
 // 挂载到vue原型上让全局使用
 Vue.prototype.$http = axios
 
