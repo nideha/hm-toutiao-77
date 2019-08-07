@@ -42,6 +42,19 @@
         </el-form-item>
       </el-form>
     </el-card>
+    <el-card>
+      <div slot="header">根据筛选条件共查询到 0 条结果：</div>
+      <!-- 表格组件 -->
+      <el-table :data="articles">
+        <!-- prop 指定这一列显示哪个字段的数据 -->
+        <!-- label 指定这一列的名称 -->
+        <el-table-column prop="img" label="封面"></el-table-column>
+      </el-table>
+      <!-- 分页组件 -->
+      <div style="text-align:center;margin-top:20px">
+        <el-pagination background layout="prev, pager, next" :total="1000"></el-pagination>
+      </div>
+    </el-card>
     <!-- 筛选结果 -->
     <!-- 具名插槽 -->
     <!-- <my-test> -->
@@ -64,13 +77,18 @@ export default {
         channel_id: null
       },
       // 频道下拉选项数据
-      options: [],
+      options: [{ value: 1, label: 'js' }],
       // 日期数据
-      dataArr: []
+      dataArr: [],
+      // 文章列表数据
+      articles: [{ img: 123 }]
     }
   }
 }
 </script>
 
 <style scoped lang='less'>
+.el-card {
+  margin-bottom: 30px;
+}
 </style>
