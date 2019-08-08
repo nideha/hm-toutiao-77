@@ -2,7 +2,19 @@
 import axios from 'axios'
 import store from '@/store'
 import router from '@/router'
+import JSONBig from 'json-bigint'
 axios.defaults.baseURL = 'http://ttapi.research.itcast.cn/mp/v1_0/'
+axios.defaults.transformResponse = [
+  data => {
+    // data是后端的原始数据
+    // 每次自动会执行
+    try {
+      return JSONBig.parse(data)
+    } catch (e) {
+      return data
+    }
+  }
+]
 // 只会执行一次，如果有token就会保存，没有就不会保存了，需要刷新
 // 给头部加上token
 // axios.defaults.headers = {
