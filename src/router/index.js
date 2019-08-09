@@ -7,6 +7,8 @@ import Home from '@/views/home'
 import Welcome from '@/views/welcome'
 import Article from '@/views/article'
 import NotFound from '@/views/404'
+import Image from '@/views/image'
+// import Publish from '@/views/publish'
 
 import store from '@/store'
 
@@ -36,7 +38,17 @@ const router = new VueRouter({
           path: '/article',
           name: 'article',
           component: Article
+        },
+        {
+          path: '/image',
+          name: 'image',
+          component: Image
         }
+        // {
+        //   path: '/publish',
+        //   name: 'publish',
+        //   component: Publish
+        // }
       ]
     },
     // 处理404
